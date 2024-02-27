@@ -79,6 +79,19 @@ public class AppConfig {
                 .formLogin().disable()
                 .authorizeHttpRequests()
                 .requestMatchers("/account/**").permitAll()
+                .requestMatchers(
+                        "/api/v1/auth/**",
+                        "/v2/api-docs",
+                        "/v3/api-docs",
+                        "/v*/a*-docs/**",
+                        "/swagger-resources",
+                        "/swagger-resources/**",
+                        "/configuration/ui",
+                        "/configuration/security",
+                        "/swagger-ui/**",
+                        "/webjars/**",
+                        "/swagger-ui.html"
+                ).permitAll()
                 .requestMatchers("/cars/**").permitAll()
                 .requestMatchers("/booking/**").hasAnyAuthority("USER", "ADMIN","DEALER")
                 .requestMatchers("/userProfilePhoto/**").permitAll()
@@ -125,20 +138,8 @@ public class AppConfig {
 
 
 }
-//
-//.requestMatchers(
-//        "/api/v1/auth/**",
-//        "/v2/api-docs",
-//        "/v3/api-docs",
-//        "/v*/a*-docs/**",
-//        "/swagger-resources",
-//        "/swagger-resources/**",
-//        "/configuration/ui",
-//        "/configuration/security",
-//        "/swagger-ui/**",
-//        "/webjars/**",
-//        "/swagger-ui.html"
-//        ).permitAll()
+
+
 
 
 
