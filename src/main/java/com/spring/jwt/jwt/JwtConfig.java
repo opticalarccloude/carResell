@@ -4,8 +4,7 @@ import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;
 
 @Data
-public class
-JwtConfig {
+public class JwtConfig {
 
     @Value("${jwt.url:/jwt/login}")
     private String url;
