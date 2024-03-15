@@ -39,27 +39,23 @@ public class AppConfig {
     @Autowired
     private CustomAuthenticationProvider customAuthenticationProvider;
 
-    @Autowired
-    JwtConfig jwtConfig;
-
 
     @Autowired
     private JwtService jwtService;
 
+    // Removed the @Autowired annotation from the JwtConfig field
+    private JwtConfig jwtConfig = new JwtConfig();
+
+    // Removed the @Bean annotation from the original jwtConfig() method
     @Bean
-    public JwtConfig jwtConfig(){
+    public JwtConfig jwtConfig() {
         return new JwtConfig();
     }
-
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder(){
 
         return new BCryptPasswordEncoder();
-    }
-    @Bean
-    public ModelMapper modelMapper() {
-        return new ModelMapper();
     }
 
     @Bean
@@ -72,7 +68,10 @@ public class AppConfig {
     public void configGlobal(final AuthenticationManagerBuilder auth){
         auth.authenticationProvider(customAuthenticationProvider);
     }
-
+    @Bean
+    public ModelMapper modelMapper() {
+        return new ModelMapper();
+    }
     @Bean
 //    @Order(Ordered.HIGHEST_PRECEDENCE)
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
